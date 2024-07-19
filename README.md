@@ -15,9 +15,10 @@
 ## 项目描述
 
 本项目通过运行[catch.py](catchad/catch.py)以采集[莆田系医院网址](api.txt)，然后用[DrissionPage](https://github.com/g1879/DrissionPage)对浏览器模拟作将目标手机号发送给企业，让企业销售联系目标联系人。
+基本引用 https://github.com/ehnait/contactPutianHospital.git  ehnait大佬的代码，只针对部分失效方法做出了修改
 
 ## 使用教程
-
+前提：本机已安装python环境
 1. 克隆或下载你的代码到本地。
 2. 创建一个新的虚拟环境（可选）。
 3. 在终端或命令提示符下进入项目目录，并激活虚拟环境（如果有）。
