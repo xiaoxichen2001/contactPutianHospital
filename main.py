@@ -7,16 +7,20 @@ from DrissionPage import ChromiumPage, ChromiumOptions
 
 # http://g1879.gitee.io/drissionpagedocs/ChromiumPage/browser_options/
 co = (ChromiumOptions()
-.set_no_imgs(False)  # 加载图片
-.set_headless(False)  # 有界面模式
+.no_imgs(False)
+#.set_no_imgs(False)
+#.set_no_imgs(False)  # 加载图片
+.headless(False)
+#.set_headless(False)  # 有界面模式
 .auto_port(True)  # 自动获取端口
 # .set_proxy("xxxxx")
 .set_user_agent(UserAgent().random)  # 随机UserAgent
 .set_paths(
-    browser_path=r'这里修改为您的浏览器可执行文件路径，可以在chrome浏览器的地址栏中输入：chrome://version 查看'))
+    browser_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
+    # browser_path=r'这里修改为您的浏览器可执行文件路径，可以在chrome浏览器的地址栏中输入：chrome://version 查看'))
 BAIDU_URL = 'https://www.baidu.com/'
-TEL_NUMBER = ''  # 手机号码
-TEL_NAME = ''  # 名字(可选)
+TEL_NUMBER = '666888000'  # 手机号码
+TEL_NAME = '我是陈三'
 # TEL_TEXT = ''  # 留言(可选)
 ENABLE_OTP = False  # 如果为True ,且页面元素存在‘去官网按钮’则进入官网发送验证码 https://github.com/ehnait/contactPutianHospital/issues/13
 
@@ -113,11 +117,11 @@ situations = [
 
 # 更丰富的联系方式描述
 contact_methods = [
-    "我急需帮助，请尽快联系我 {number}",
+    "急需帮助，请尽快联系我 {number}",
     "有事找你，麻烦联系我 {number}",
     "情况紧急，请求帮助，请立即拨打 {number}",
     "需要紧急救助，请马上联系我 {number}",
-    "我的病情急需处理，请尽快联系 {number}",
+    "病情急需处理，请尽快联系 {number}",
     "需要安排紧急手术，请与我联系 {number}",
     "有重要情况需要讨论，请拨打 {number} 联系我",
     "我有紧急问题，希望能与你通话 {number}",
@@ -179,7 +183,8 @@ def process_tab(page, url, success_counter, total_len):
             greeting = random.choice(greetings)
 
             # 生成打招呼用语
-            template = f"{greeting}{title}，{relative} {TEL_NAME} {situation}，{contact_method}。"
+            template = f"{greeting}{title}，{TEL_NAME}，{relative} {situation}，{contact_method}。"
+            #template = f"{greeting}{title}，{relative} {TEL_NAME} {situation}，{contact_method}。"
             print(template)
 
 
@@ -210,7 +215,8 @@ def iterate_api(file_path):
     :param file_path: API文件路径
     """
 
-    page = ChromiumPage(addr_driver_opts=co)
+    page = ChromiumPage()
+    #page = ChromiumPage(addr_driver_opts=co)
     page.get(BAIDU_URL)
     page.wait.load_start()
     with open(file_path, 'r', encoding='utf-8') as file:
